@@ -16,25 +16,25 @@ public class RepairShopConfig {
     @Bean
     Properties getProps() {
 
-     
+        return new Properties();
     }
 
     @Bean
     ComputerRepairRequestRepository requestsRepo(){
        
-
+        return null;
     }
 
     @Bean
     ComputerRepairedFormRepository formsRepo(){
        
-
+        return null;
     }
 
     @Bean
     ComputerRepairServices services(){
        
-
+        return null;
     }
 
 }
