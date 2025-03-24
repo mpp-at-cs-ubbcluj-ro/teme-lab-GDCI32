@@ -2,6 +2,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import repository.ComputerRepairRequestRepository;
 import repository.ComputerRepairedFormRepository;
+import repository.file.ComputerRepairRequestFileRepository;
+import repository.file.ComputerRepairedFormFileRepository;
 import repository.jdbc.ComputerRepairRequestJdbcRepository;
 import repository.jdbc.ComputerRepairedFormJdbcRepository;
 import services.ComputerRepairServices;
@@ -28,13 +30,13 @@ public class RepairShopConfig {
 
     @Bean
     ComputerRepairRequestRepository requestsRepo(){
-       
+       //return new ComputerRepairRequestFileRepository("ComputerRequests.txt");
         return new ComputerRepairRequestJdbcRepository(getProps());
     }
 
     @Bean
     ComputerRepairedFormRepository formsRepo(){
-       
+       //return new ComputerRepairedFormFileRepository("RepairedForms.txt", requestsRepo());
         return new ComputerRepairedFormJdbcRepository(getProps());
     }
 
