@@ -16,25 +16,32 @@ public class RepairShopConfig {
     @Bean
     Properties getProps() {
 
-        return new Properties();
+        Properties props = new Properties();
+        try{
+            System.out.println("Searching bd.config in directory" + ((new File(".")).getAbsolutePath()));
+            props.load(new FileReader("bd.config"));
+        }catch(IOException e){
+            System.err.println("Configuration file not found "+e);
+        }
+        return props;
     }
 
     @Bean
     ComputerRepairRequestRepository requestsRepo(){
        
-        return null;
+        return new ComputerRepairRequestJdbcRepository(getProps());
     }
 
     @Bean
     ComputerRepairedFormRepository formsRepo(){
        
-        return null;
+        return new ComputerRepairedFormJdbcRepository(getProps());
     }
 
     @Bean
     ComputerRepairServices services(){
        
-        return null;
+        return new ComputerRepairServices(requestsRepo(), formsRepo());
     }
 
 }
